@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+
+  <title>Pink Paradise</title>
+
+  <!-- GOOGLE FONTS -->
+
+  <link rel="preconnect"
+  href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap"
+  rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+
+      min-height:100vh;
+
+      overflow-x:hidden;
+
+      font-family:'Poppins',sans-serif;
+
+      background:
+
+      linear-gradient(
+      rgba(255,192,203,0.35),
+      rgba(255,182,193,0.35)
+      ),
+
+      url("https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?q=80&w=1600&auto=format&fit=crop");
+
+      background-size:cover;
+
+      background-position:center;
+
+      background-attachment:scroll;
+
+      color:white;
+
+      padding-bottom:120px;
+    }
+
+    body::before{
+
+      content:"";
+
+      position:fixed;
+
+      inset:0;
+
+      backdrop-filter:blur(2px);
+
+      z-index:-1;
+    }
+
+    /* FLOATING FLOWERS */
+
+.flower{
+
+  position:fixed;
+
+  font-size:34px;
+
+  z-index:1;
+
+  user-select:none;
+
+  left:0;
+  top:0;
+
+  will-change:transform,left,top;
+
+  transition:
+  transform 1.2s ease,
+  filter 1.2s ease;
+
+  pointer-events:none;
+}
+
+.flower:hover{
+
+  filter:
+  drop-shadow(0 0 12px white);
+
+  transform:scale(1.15);
+}
+
+    /* HEADER */
+
+    header{
+
+      width:min(96%,1400px);
+
+      margin:18px auto;
+
+      padding:24px 40px;
+
+      border-radius:40px;
+
+      display:flex;
+
+      justify-content:space-between;
+
+      align-items:center;
+
+      flex-wrap:wrap;
+
+      gap:20px;
+
+      background:rgba(255,255,255,0.14);
+
+      backdrop-filter:blur(16px);
+
+      border:1px solid rgba(255,255,255,0.25);
+
+      box-shadow:
+
+      0 10px 35px rgba(0,0,0,0.18),
+
+      inset 0 0 20px rgba(255,255,255,0.08);
+
+      transition:
+      transform 0.8s ease,
+      width 0.8s ease,
+      padding 0.8s ease;
+    }
+
+    .header-expand{
+
+      transform:scale(1.03);
+
+      width:min(98%,1450px);
+
+      padding:34px 48px;
+    }
+
+    .header-shrink{
+
+      transform:scale(0.97);
+
+      width:min(90%,1200px);
+
+      padding:18px 34px;
+    }
+
+    /* TITLE */
+
+    header h1{
+
+      font-family:'Great Vibes',cursive;
+
+      font-size:clamp(42px,6vw,70px);
+
+      text-shadow:
+      0 0 15px rgba(255,255,255,0.7);
+
+      animation:titleGlow 3s infinite alternate;
+    }
+
+    @keyframes titleGlow{
+
+      from{
+        text-shadow:
+        0 0 10px rgba(255,255,255,0.4);
+      }
+
+      to{
+        text-shadow:
+        0 0 28px rgba(255,255,255,0.9);
+      }
+    }
+
+    /* CLOCK AREA */
+
+    .clock-container{
+
+      position:relative;
+
+      display:flex;
+
+      justify-content:center;
+
+      align-items:center;
+
+      cursor:pointer;
+
+      border-radius:35px;
+
+      padding:10px;
+
+      transition:0.5s ease;
+    }
+
+    .hover-text{
+
+      position:absolute;
+
+      bottom:-42px;
+
+      left:50%;
+
+      transform:translateX(-50%);
+
+      opacity:0;
+
+      white-space:nowrap;
+
+      transition:0.4s;
+
+      font-family:'Great Vibes',cursive;
+
+      font-size:30px;
+
+      text-shadow:
+      0 0 12px rgba(255,255,255,0.8);
+    }
+
+    .clock-container:hover .hover-text{
+      opacity:1;
+    }
+
+    /* DIGITAL CLOCK */
+
+    #digitalClock{
+
+      padding:18px 34px;
+
+      border-radius:30px;
+
+      font-size:clamp(24px,3vw,38px);
+
+      font-family:'Great Vibes',cursive;
+
+      background:rgba(255,105,180,0.25);
+
+      border:2px solid rgba(255,255,255,0.3);
+
+      backdrop-filter:blur(16px);
+
+      box-shadow:
+
+      0 0 25px rgba(255,182,193,0.5),
+
+      inset 0 0 15px rgba(255,255,255,0.15);
+
+      animation:pulse 2.3s infinite ease-in-out;
+    }
+
+    @keyframes pulse{
+
+      0%{
+        transform:scale(1);
+      }
+
+      50%{
+        transform:scale(1.06);
+      }
+
+      100%{
+        transform:scale(1);
+      }
+    }
+
+    /* ANALOG CLOCK */
+
+    #analogClock{
+
+      width:145px;
+      height:145px;
+
+      border-radius:50%;
+
+      display:none;
+
+      position:relative;
+
+      background:rgba(255,192,203,0.24);
+
+      border:3px solid rgba(255,255,255,0.3);
+
+      backdrop-filter:blur(16px);
+
+      box-shadow:
+
+      0 0 28px rgba(255,182,193,0.5),
+
+      inset 0 0 15px rgba(255,255,255,0.15);
+    }
+
+    .hand{
+
+      position:absolute;
+
+      left:50%;
+      bottom:50%;
+
+      transform-origin:bottom;
+
+      border-radius:10px;
+    }
+
+    .hour{
+      width:6px;
+      height:35px;
+      background:white;
+    }
+
+    .minute{
+      width:4px;
+      height:48px;
+      background:#ffe4ec;
+    }
+
+    .second{
+      width:2px;
+      height:55px;
+      background:#ff4d94;
+    }
+
+    .center-dot{
+
+      width:12px;
+      height:12px;
+
+      border-radius:50%;
+
+      background:white;
+
+      position:absolute;
+
+      top:50%;
+      left:50%;
+
+      transform:translate(-50%,-50%);
+    }
+
+    /* CLOCK ANIMATION */
+
+    .showClock{
+      animation:showClock 0.6s ease forwards;
+    }
+
+    .hideClock{
+      animation:hideClock 0.6s ease forwards;
+    }
+
+    @keyframes showClock{
+
+      from{
+        opacity:0;
+        transform:
+        scale(0.7)
+        rotate(-12deg);
+      }
+
+      to{
+        opacity:1;
+        transform:
+        scale(1)
+        rotate(0deg);
+      }
+    }
+
+    @keyframes hideClock{
+
+      from{
+        opacity:1;
+        transform:
+        scale(1)
+        rotate(0deg);
+      }
+
+      to{
+        opacity:0;
+        transform:
+        scale(0.7)
+        rotate(12deg);
+      }
+    }
+
+    /* MAIN CARD */
+
+    .container{
+
+      width:100%;
+
+      display:flex;
+
+      justify-content:center;
+
+      align-items:center;
+
+      padding:60px 20px;
+    }
+
+    .card{
+
+      width:min(450px,95%);
+
+      padding:42px;
+
+      border-radius:42px;
+
+      text-align:center;
+
+      background:rgba(255,255,255,0.16);
+
+      backdrop-filter:blur(18px);
+
+      border:1px solid rgba(255,255,255,0.25);
+
+      box-shadow:
+      0 10px 40px rgba(0,0,0,0.2);
+
+      animation:fadeUp 1.3s ease;
+    }
+
+    @keyframes fadeUp{
+
+      from{
+        opacity:0;
+        transform:translateY(50px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* PROFILE IMAGE */
+
+    .profile-img{
+
+      width:180px;
+      height:180px;
+
+      border-radius:50%;
+
+      object-fit:cover;
+
+      border:5px solid rgba(255,255,255,0.45);
+
+      margin-bottom:22px;
+
+      transition:0.5s;
+
+      box-shadow:
+      0 0 25px rgba(255,255,255,0.45);
+    }
+
+    .profile-img:hover{
+
+      transform:
+      scale(1.08)
+      rotate(4deg);
+    }
+
+    /* TEXT */
+
+    .card h2{
+
+      font-family:'Great Vibes',cursive;
+
+      font-size:68px;
+
+      margin-bottom:10px;
+
+      text-shadow:
+      0 0 15px rgba(255,255,255,0.5);
+    }
+
+    .card p{
+
+      margin-bottom:30px;
+
+      font-size:18px;
+    }
+
+    /* BUTTONS */
+
+    .links a{
+
+      display:block;
+
+      margin:18px 0;
+
+      padding:18px;
+
+      border-radius:30px;
+
+      text-decoration:none;
+
+      font-size:34px;
+
+      font-family:'Great Vibes',cursive;
+
+      color:white;
+
+      transition:0.4s;
+
+      backdrop-filter:blur(10px);
+
+      box-shadow:
+      0 6px 18px rgba(0,0,0,0.2);
+    }
+
+    .links a:hover{
+
+      transform:
+      translateY(-6px)
+      scale(1.05);
+
+      box-shadow:
+      0 0 25px rgba(255,255,255,0.6);
+    }
+
+    .instagram{
+      background:rgba(255,105,180,0.7);
+    }
+
+    .reddit{
+      background:rgba(255,182,193,0.65);
+    }
+
+    .twitter{
+      background:rgba(255,20,147,0.65);
+    }
+
+    .facebook{
+      background:rgba(219,112,147,0.65);
+    }
+
+    /* SCROLL BUTTON */
+
+    #scrollTopBtn{
+
+      position:fixed;
+
+      bottom:25px;
+      right:25px;
+
+      width:60px;
+      height:60px;
+
+      border:none;
+
+      border-radius:50%;
+
+      background:rgba(255,105,180,0.85);
+
+      color:white;
+
+      font-size:28px;
+
+      cursor:pointer;
+
+      z-index:9999;
+
+      backdrop-filter:blur(10px);
+
+      box-shadow:
+      0 0 20px rgba(255,255,255,0.45);
+
+      transition:0.3s;
+    }
+
+    #scrollTopBtn:hover{
+
+      transform:
+      scale(1.12);
+
+      background:rgba(255,20,147,0.95);
+    }
+
+    @media(max-width:700px){
+
+      header{
+        justify-content:center;
+        text-align:center;
+      }
+
+      .hover-text{
+        font-size:24px;
+      }
+
+      .card{
+        padding:30px 20px;
+      }
+
+      .links a{
+        font-size:28px;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- FLOWERS -->
+
+  <div class="flower"
+  style="top:10%; left:10%;">
+  🌸
+  </div>
+
+  <div class="flower"
+  style="top:70%; left:20%;">
+  🌷
+  </div>
+
+  <div class="flower"
+  style="top:20%; right:15%;">
+  🌺
+  </div>
+
+  <div class="flower"
+  style="bottom:12%; right:12%;">
+  💮
+  </div>
+
+  <div class="flower"
+  style="top:40%; left:5%;">
+  🌼
+  </div>
+
+  <div class="flower"
+  style="top:55%; right:8%;">
+  🌹
+  </div>
+
+  <!-- HEADER -->
+
+  <header id="mainHeader">
+
+    <h1>
+      Pink Paradise
+    </h1>
+
+    <!-- CLOCK -->
+
+    <div class="clock-container"
+    onclick="toggleClock()">
+
+      <div id="digitalClock">
+
+        ✧･ﾟ: *✧ 00:00:00 ✧*:･ﾟ✧
+
+      </div>
+
+      <div id="analogClock">
+
+        <div class="hand hour"
+        id="hourHand"></div>
+
+        <div class="hand minute"
+        id="minuteHand"></div>
+
+        <div class="hand second"
+        id="secondHand"></div>
+
+        <div class="center-dot"></div>
+
+      </div>
+
+      <div class="hover-text"
+      id="hoverText">
+
+        ♡ click for analog watch ♡
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- MAIN -->
+
+  <div class="container">
+
+    <div class="card">
+
+      <img
+      src="cutieee.jpg"
+      class="profile-img">
+
+      <h2>
+        Welcome ♡
+      </h2>
+
+      <p>
+        My aesthetic pink dashboard ✨
+      </p>
+
+      <div class="links">
+
+        <a
+        href="https://www.instagram.com/shaurya_826/"
+        target="_blank"
+        class="instagram">
+
+        ♡ Instagram ♡
+
+        </a>
+
+        <a
+href="https://steamcommunity.com/profiles/76561199090130874/"
+target="_blank"
+class="reddit">
+
+✿ Steam ✿
+
+</a>
+
+        <a
+href="https://www.xbox.com/en-US/play/user/WombEater695766"
+target="_blank"
+class="twitter">
+
+✧ Xbox ✧
+
+</a>
+
+        <a
+        href="https://www.facebook.com/profile.php?id=61562641817231"
+        target="_blank"
+        class="facebook">
+
+        ❀ Facebook ❀
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SCROLL BUTTON -->
+
+  <button id="scrollTopBtn">
+    ↑
+  </button>
+
+  <script>
+
+    /* DIGITAL CLOCK */
+
+    function updateDigitalClock(){
+
+      const now = new Date();
+
+      let hours =
+      String(now.getHours())
+      .padStart(2,'0');
+
+      let minutes =
+      String(now.getMinutes())
+      .padStart(2,'0');
+
+      let seconds =
+      String(now.getSeconds())
+      .padStart(2,'0');
+
+      document.getElementById(
+      "digitalClock").innerHTML =
+
+      `✧･ﾟ: *✧ ${hours}:${minutes}:${seconds} ✧*:･ﾟ✧`;
+    }
+
+    setInterval(updateDigitalClock,1000);
+
+    updateDigitalClock();
+
+    /* ANALOG CLOCK */
+
+    function updateAnalogClock(){
+
+      const now = new Date();
+
+      const hour =
+      now.getHours();
+
+      const minute =
+      now.getMinutes();
+
+      const second =
+      now.getSeconds();
+
+      const hourDeg =
+      (hour % 12) * 30 + minute * 0.5;
+
+      const minuteDeg =
+      minute * 6;
+
+      const secondDeg =
+      second * 6;
+
+      document.getElementById("hourHand")
+      .style.transform =
+
+      `translateX(-50%)
+      rotate(${hourDeg}deg)`;
+
+      document.getElementById("minuteHand")
+      .style.transform =
+
+      `translateX(-50%)
+      rotate(${minuteDeg}deg)`;
+
+      document.getElementById("secondHand")
+      .style.transform =
+
+      `translateX(-50%)
+      rotate(${secondDeg}deg)`;
+    }
+
+    setInterval(updateAnalogClock,1000);
+
+    updateAnalogClock();
+
+    /* TOGGLE CLOCK */
+
+    let isAnalog = false;
+
+    function toggleClock(){
+
+      const digital =
+      document.getElementById(
+      "digitalClock");
+
+      const analog =
+      document.getElementById(
+      "analogClock");
+
+      const hoverText =
+      document.getElementById(
+      "hoverText");
+
+      const header =
+      document.getElementById(
+      "mainHeader");
+
+      if(isAnalog){
+
+        header.classList.remove(
+        "header-shrink");
+
+        header.classList.add(
+        "header-expand");
+
+        analog.classList.remove(
+        "showClock");
+
+        analog.classList.add(
+        "hideClock");
+
+        setTimeout(()=>{
+
+          analog.style.display =
+          "none";
+
+          digital.style.display =
+          "block";
+
+          digital.classList.remove(
+          "hideClock");
+
+          digital.classList.add(
+          "showClock");
+
+          hoverText.innerHTML =
+
+          "♡ click for analog watch ♡";
+
+        },450);
+
+      }
+
+      else{
+
+        header.classList.remove(
+        "header-expand");
+
+        header.classList.add(
+        "header-shrink");
+
+        digital.classList.remove(
+        "showClock");
+
+        digital.classList.add(
+        "hideClock");
+
+        setTimeout(()=>{
+
+          digital.style.display =
+          "none";
+
+          analog.style.display =
+          "block";
+
+          analog.classList.remove(
+          "hideClock");
+
+          analog.classList.add(
+          "showClock");
+
+          hoverText.innerHTML =
+
+          "♡ click for digital watch ♡";
+
+        },450);
+      }
+
+      isAnalog = !isAnalog;
+    }
+
+    /* IMPROVED FLOATING FLOWERS */
+
+    const flowers =
+    document.querySelectorAll(".flower");
+
+    flowers.forEach((flower,index)=>{
+
+      let posX =
+      Math.random() *
+      (window.innerWidth - 100);
+
+      let posY =
+      Math.random() *
+      (window.innerHeight - 100);
+
+      let speedX =
+      (Math.random()*1.2)-0.6;
+
+      let speedY =
+      (Math.random()*1.2)-0.6;
+
+      let rotation =
+      Math.random()*360;
+
+      function animateFlower(){
+
+        posX += speedX;
+        posY += speedY;
+
+        rotation += 0.08;
+
+        speedX +=
+        (Math.random()-0.5)*0.01;
+
+        speedY +=
+        (Math.random()-0.5)*0.01;
+
+        speedX =
+        Math.max(
+        -1,
+        Math.min(1,speedX)
+        );
+
+        speedY =
+        Math.max(
+        -1,
+        Math.min(1,speedY)
+        );
+
+        if(posX <= 0 ||
+        posX >=
+        window.innerWidth-60){
+
+          speedX *= -1;
+        }
+
+        if(posY <= 0 ||
+        posY >=
+        window.innerHeight-60){
+
+          speedY *= -1;
+        }
+
+        flower.style.left =
+        `${posX}px`;
+
+        flower.style.top =
+        `${posY}px`;
+
+        flower.style.transform =
+
+        `rotate(${rotation}deg)
+        scale(
+        ${1 + Math.sin(Date.now()/800 + index)*0.08}
+        )`;
+
+        requestAnimationFrame(
+        animateFlower
+        );
+      }
+
+      animateFlower();
+
+      /* CLICK TO FLY */
+
+      flower.addEventListener(
+      "click", ()=>{
+
+        speedX =
+        (Math.random()*8)-4;
+
+        speedY =
+        (Math.random()*8)-4;
+
+        flower.style.transform =
+
+        `scale(1.6)
+        rotate(${Math.random()*720}deg)`;
+
+        setTimeout(()=>{
+
+          flower.style.transform =
+          "scale(1)";
+
+        },1000);
+
+      });
+
+    });
+
+    /* SCROLL BUTTON */
+
+    const scrollBtn =
+    document.getElementById(
+    "scrollTopBtn");
+
+    scrollBtn.addEventListener(
+    "click", ()=>{
+
+      window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
